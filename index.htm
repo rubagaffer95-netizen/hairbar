@@ -3,84 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hair Bar</title>
+    <title>Hair Bar - للعناية بالشعر</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary-color: #FFD700; --dark-bg: #1a1a1a; --card-bg: #2d2d2d; --text-color: #f5f5f5; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
         body { background-color: var(--dark-bg); color: var(--text-color); }
-        header { background-color: #000; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--primary-color); }
-        .logo { font-size: 2rem; font-weight: 900; color: var(--primary-color); text-transform: uppercase; }
+        
+        /* الهيدر */
+        header { background-color: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--primary-color); }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary-color); }
         .logo span { color: #fff; }
+        
+        /* سلة التسوق */
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.5rem; color: #fff; }
+        .cart-count { position: absolute; top: -10px; right: -10px; background: var(--primary-color); color: #000; border-radius: 50%; width: 25px; height: 25px; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: bold; }
+        
         nav ul { list-style: none; display: flex; gap: 20px; }
         nav a { color: #fff; text-decoration: none; font-weight: 700; transition: 0.3s; }
         nav a:hover { color: var(--primary-color); }
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; color: var(--primary-color); }
-        .hero p { font-size: 1.5rem; max-width: 600px; margin-bottom: 30px; }
-        .btn { background-color: var(--primary-color); color: #000; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 900; font-size: 1.2rem; transition: 0.3s; display: inline-block; }
+        
+        /* الهيرو */
+        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://instagram.fcai19-3.fna.fbcdn.net/v/t51.2885-19/458610577_925695206036238_5636901224239856548_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fcai19-3.fna.fbcdn.net&_nc_cat=106&_nc_oc=Q6cZ2QFmbwGDCaetxDbiiHVOykw-N8Kp-DoFGrX1cSmkURdpV2bpOjbpn6b6TUTUSbHRMqo&_nc_ohc=dyAKA-zXe_UQ7kNvwEBZ_nW&_nc_gid=gDz2dPRwL0CPNrwx1P7qmw&edm=ALGbJPMBAAAA&ccb=7-5&oh=00_AftFi3d2uJUHkRQ6W11ptIIBKZKdA3VmXaXMHycz8TPH2A&oe=69A69223&_nc_sid=7d3ac5'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; color: var(--primary-color); }
+        .hero p { font-size: 1.3rem; max-width: 600px; margin-bottom: 25px; }
+        .btn { background-color: var(--primary-color); color: #000; padding: 12px 35px; border-radius: 50px; text-decoration: none; font-weight: 900; font-size: 1.1rem; transition: 0.3s; display: inline-block; }
         .btn:hover { background-color: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
-        .products { padding: 80px 5%; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--primary-color); }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .product-card { background-color: var(--card-bg); border-radius: 15px; overflow: hidden; transition: 0.3s; border: 1px solid #444; }
-        .product-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
-        .product-img { width: 100%; height: 300px; background-color: #333; }
+        
+        /* المنتجات */
+        .products { padding: 60px 5%; }
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: var(--primary-color); }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .product-card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; transition: 0.3s; border: 1px solid #444; }
+        .product-card:hover { transform: translateY(-8px); border-color: var(--primary-color); }
+        .product-img { width: 100%; height: 220px; background-color: #333; display: flex; justify-content: center; align-items: center; color: #777; font-size: 3rem; }
         .product-img img { width: 100%; height: 100%; object-fit: cover; }
-        .product-info { padding: 20px; text-align: center; }
-        .product-title { font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
-        .product-desc { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.6; }
-        .price { font-size: 1.3rem; color: var(--primary-color); font-weight: bold; margin-bottom: 20px; display: block; }
-        .order-btn { background-color: var(--primary-color); color: #000; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; font-size: 1rem; }
-        .order-btn:hover { background-color: #fff; }
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
-        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 2px solid var(--primary-color); position: relative; }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; color: #fff; cursor: pointer; }
+        .product-info { padding: 18px; text-align: center; }
+        .product-title { font-size: 1.3rem; color: #fff; margin-bottom: 8px; }
+        .product-desc { color: #aaa; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.5; }
+        .price { font-size: 1.2rem; color: var(--primary-color); font-weight: bold; margin-bottom: 15px; display: block; }
+        
+        /* أزرار الكمية */
+        .quantity-controls { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .qty-btn { background: var(--primary-color); border: none; width: 35px; height: 35px; border-radius: 8px; font-size: 1.2rem; cursor: pointer; color: #000; font-weight: bold; }
+        .qty-btn:hover { background: #fff; }
+        .qty-display { font-size: 1.1rem; font-weight: bold; color: #fff; min-width: 40px; text-align: center; }
+        
+        .add-btn { background-color: var(--primary-color); color: #000; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; font-size: 1rem; }
+        .add-btn:hover { background-color: #fff; }
+        .add-btn:disabled { background-color: #555; cursor: not-allowed; }
+        
+        /* سلة التسوق - النافذة المنبثقة */
+        .cart-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center; }
+        .cart-content { background-color: var(--card-bg); padding: 25px; border-radius: 15px; width: 95%; max-width: 450px; border: 2px solid var(--primary-color); max-height: 80vh; overflow-y: auto; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 15px; }
+        .cart-title { color: var(--primary-color); font-size: 1.4rem; font-weight: bold; }
+        .close-cart { font-size: 2rem; color: #fff; cursor: pointer; }
+        .close-cart:hover { color: var(--primary-color); }
+        
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #444; }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { color: #fff; font-weight: bold; margin-bottom: 5px; }
+        .cart-item-qty { color: #aaa; font-size: 0.9rem; }
+        .cart-item-price { color: var(--primary-color); font-weight: bold; margin-left: 15px; }
+        .remove-item { color: #ff4444; cursor: pointer; margin-left: 10px; font-size: 1.2rem; }
+        
+        .cart-total { margin-top: 20px; padding-top: 15px; border-top: 2px solid var(--primary-color); display: flex; justify-content: space-between; align-items: center; }
+        .total-label { color: #fff; font-size: 1.2rem; font-weight: bold; }
+        .total-price { color: var(--primary-color); font-size: 1.4rem; font-weight: bold; }
+        
+        .checkout-btn { background-color: var(--primary-color); color: #000; border: none; padding: 15px; border-radius: 10px; width: 100%; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .checkout-btn:hover { background-color: #fff; }
+        .empty-cart { text-align: center; color: #aaa; padding: 30px; }
+        
+        /* نموذج الطلب */
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--card-bg); padding: 25px; border-radius: 15px; width: 95%; max-width: 450px; border: 2px solid var(--primary-color); position: relative; }
+        .close-btn { position: absolute; top: 12px; right: 18px; font-size: 28px; color: #fff; cursor: pointer; }
         .close-btn:hover { color: var(--primary-color); }
-        .form-title { text-align: center; color: var(--primary-color); margin-bottom: 20px; font-size: 1.5rem; }
-        .form-group { margin-bottom: 15px; }
+        .form-title { text-align: center; color: var(--primary-color); margin-bottom: 20px; font-size: 1.4rem; }
+        .form-group { margin-bottom: 12px; }
         .form-group label { display: block; margin-bottom: 5px; color: #fff; font-weight: bold; }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background-color: #333; color: #fff; font-size: 1rem; }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-color); }
-        .submit-btn { background-color: var(--primary-color); color: #000; border: none; padding: 15px; border-radius: 8px; width: 100%; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
+        .submit-btn { background-color: var(--primary-color); color: #000; border: none; padding: 14px; border-radius: 8px; width: 100%; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background-color: #fff; }
-        footer { background-color: #000; padding: 40px 5%; text-align: center; border-top: 1px solid #333; }
-        .social-icons { margin-bottom: 20px; }
-        .social-icons a { color: #fff; font-size: 1.5rem; margin: 0 10px; transition: 0.3s; }
+        
+        /* الفوتر */
+        footer { background-color: #000; padding: 30px 5%; text-align: center; border-top: 1px solid #333; margin-top: 40px; }
+        .social-icons { margin-bottom: 15px; }
+        .social-icons a { color: #fff; font-size: 1.4rem; margin: 0 10px; transition: 0.3s; }
         .social-icons a:hover { color: var(--primary-color); }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } header { flex-direction: column; gap: 15px; } nav ul { gap: 10px; font-size: 0.9rem; } }
+        
+        /* للموبايل */
+        @media (max-width: 768px) { 
+            .hero h1 { font-size: 2.2rem; } 
+            header { flex-direction: column; gap: 10px; } 
+            nav ul { gap: 10px; font-size: 0.9rem; }
+            .cart-content { width: 98%; padding: 20px; }
+        }
     </style>
 </head>
 <body>
+    <!-- الهيدر -->
     <header>
         <div class="logo">Hair <span>Bar</span></div>
-        <nav><ul><li><a href="#home">الرئيسية</a></li><li><a href="#products">المنتجات</a></li><li><a href="#contact">تواصل معنا</a></li></ul></nav>
+        <nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon" onclick="openCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
     </header>
-    <section class="hero" id="home"><h1>جمالكِ يبدأ من شعرك</h1><p>أفضل منتجات العناية بالشعر الأفريبيكي والكيرلي. خالي من الكيماويات، للعناية مثالية.</p><a href="#products" class="btn">تسوقي الآن</a></section>
-    <section class="products" id="products"><h2 class="section-title">منتجاتنا المميزة</h2><div class="product-grid">
-        <div class="product-card"><div class="product-img"><img src="https://img.freepik.com/free-photo/luxury-perfume-bottle_1339-1423.jpg" alt="زيت الأميرة"></div><div class="product-info"><h3 class="product-title">زيت الأميرة</h3><p class="product-desc">زيت مغذي لتعزيز النمو والتألق.</p><span class="price">سعر خاص</span><button class="order-btn" onclick="openModal('زيت الأميرة')">اطلب الآن</button></div></div>
-        <div class="product-card"><div class="product-img"><img src="https://img.freepik.com/free-photo/glass-bottle-with-dropper_1339-1441.jpg" alt="زيت شعر هير بار"></div><div class="product-info"><h3 class="product-title">زيت شعر Hair Bar</h3><p class="product-desc">ترطيب عميق ومنع تساقط الشعر.</p><span class="price">سعر خاص</span><button class="order-btn" onclick="openModal('زيت شعر Hair Bar')">اطلب الآن</button></div></div>
-        <div class="product-card"><div class="product-img"><img src="https://img.freepik.com/free-photo/spray-bottle-isolated-white_1339-1444.jpg" alt="بخاخ هير بار"></div><div class="product-info"><h3 class="product-title">بخاخ هير بار</h3><p class="product-desc">رذاذ الترطيب اليومي.</p><span class="price">سعر خاص</span><button class="order-btn" onclick="openModal('بخاخ هير بار')">اطلب الآن</button></div></div>
-        <div class="product-card"><div class="product-img"><img src="https://img.freepik.com/free-photo/organic-powder-micronized_1339-1266.jpg" alt="بدرة التشيبي"></div><div class="product-info"><h3 class="product-title">بدرة التشيبي</h3><p class="product-desc">السر الأفريقي الطويل.</p><span class="price">سعر خاص</span><button class="order-btn" onclick="openModal('بدرة التشيبي')">اطلب الآن</button></div></div>
-    </div></section>
-    <div class="modal" id="orderModal"><div class="modal-content"><span class="close-btn" onclick="closeModal()">&times;</span><h2 class="form-title">اطلب منتجك</h2>
-        <!-- ⬇️ غيري الإيميل هنا بس ⬇️ -->
-        <form action="https://formsubmit.co/rubagaffer95@gmail.com" method="POST" onsubmit="closeModal()">
-            <input type="hidden" name="_subject" value="طلب جديد من Hair Bar">
-            <input type="hidden" id="productName" name="المنتج">
-            <div class="form-group"><label>الاسم الكامل</label><input type="text" name="الاسم" required placeholder="أدخل اسمك"></div>
-            <div class="form-group"><label>رقم الهاتف</label><input type="tel" name="الهاتف" required placeholder="أدخل رقم الهاتف"></div>
-            <div class="form-group"><label>العنوان</label><input type="text" name="العنوان" required placeholder="أدخل العنوان"></div>
-            <div class="form-group"><label>ملاحظات</label><textarea name="ملاحظات" rows="3" placeholder="ملاحظات..."></textarea></div>
-            <button type="submit" class="submit-btn">إرسال الطلب</button>
-        </form>
-    </div></div>
-    <footer id="contact"><div class="social-icons"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-tiktok"></i></a></div><p>جميع الحقوق محفوظة لـ Hair Bar &copy; 2024</p></footer>
+
+    <!-- الصفحة الرئيسية -->
+    <section class="hero" id="home">
+        <h1>جمالكِ يبدأ من شعرك</h1>
+        <p>أفضل منتجات العناية بالشعر الأفريقي والكيرلي. خالي من الكيماويات، للعناية مثالية.</p>
+        <a href="#products" class="btn">تسوقي الآن</a>
+    </section>
+
+    <!-- قسم المنتجات -->
+    <section class="products" id="products">
+        <h2 class="section-title">منتجاتنا المميزة</h2>
+        
+        <div class="product-grid">
+            <!-- المنتج الأول -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://ibb.co/d06LqqvC" alt="زيت الأميرة">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">زيت الأميرة</h3>
+                    <p class="product-desc">زيت مغذي لتعزيز النمو والتألق.</p>
+                    <span class="price">سعر خاص</span>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="decreaseQty(0)">-</button>
+                        <span class="qty-display" id="qty0">1</span>
+                        <button class="qty-btn" onclick="increaseQty(0)">+</button>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('زيت الأميرة', 0)">أضف للسلة</button>
+                </div>
+            </div>
+
+            <!-- المنتج الثاني -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://ibb.co/0RGw2dFT" alt="زيت شعر Hair Bar">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">زيت شعر Hair Bar</h3>
+                    <p class="product-desc">ترطيب عميق ومنع تساقط الشعر.</p>
+                    <span class="price">سعر خاص</span>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="decreaseQty(1)">-</button>
+                        <span class="qty-display" id="qty1">1</span>
+                        <button class="qty-btn" onclick="increaseQty(1)">+</button>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('زيت شعر Hair Bar', 1)">أضف للسلة</button>
+                </div>
+            </div>
+
+            <!-- المنتج الثالث -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://ibb.co/5Xww5RpN" alt="بخاخ هير بار">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">بخاخ هير بار</h3>
+                    <p class="product-desc">رذاذ الترطيب اليومي.</p>
+                    <span class="price">سعر خاص</span>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="decreaseQty(2)">-</button>
+                        <span class="qty-display" id="qty2">1</span>
+                        <button class="qty-btn" onclick="increaseQty(2)">+</button>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('بخاخ هير بار', 2)">أضف للسلة</button>
+                </div>
+            </div>
+
+            <!-- المنتج الرابع -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://ibb.co/RG57fJWY" alt="بدرة التشيبي">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">بدرة التشيبي</h3>
+                    <p class="product-desc">السر الأفريقي الطويل.</p>
+                    <span class="price">سعر خاص</span>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="decreaseQty(3)">-</button>
+                        <span class="qty-display" id="qty3">1</span>
+                        <button class="qty-btn" onclick="increaseQty(3)">+</button>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('بدرة التشيبي', 3)">أضف للسلة</button>
+                </div>
+            </div>
+
+            <!-- المنتج الخامس - كركار -->
+            <div class="product-card">
+                <div class="product-img" style="(135deg, #333 25%, #444 25%, #444 50%, #333 50%, #333 75%, #444 75%, #444 100%); background-size: 20px 20px;">
+                    <i class="fas fa-spray-can" style="color: var(--primary-color);"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">كركار</h3>
+                    <p class="product-desc">لتكثيف وتثبيت الشعر.</p>
+                    <span class="price">سعر خاص</span>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="decreaseQty(4)">-</button>
+                        <span class="qty-display" id="qty4">1</span>
+                        <button class="qty-btn" onclick="increaseQty(4)">+</button>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('كركار', 4)">أضف للسلة</button>
+                </div>
+            </div>
+
+            <!-- المنتج السادس - كريم الترطيب -->
+            <div class="product-card">
+                <div class="product-img" style="background: linear-gradient(135deg, #333 25%, #444 25%, #444 50%, #333 50%, #333 75%, #444 75%, #444 100%); background-size: 20px 20px;">
+                    <i class="fas fa-pump-soap" style="color: var(--primary-color);"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">كريم الترطيب</h3>
+                    <p class="product-desc">ترطيب عميق للشعر الجاف.</p>
+                    <span class="price">سعر خاص</span>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="decreaseQty(5)">-</button>
+                        <span class="qty-display" id="qty5">1</span>
+                        <button class="qty-btn" onclick="increaseQty(5)">+</button>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('كريم الترطيب', 5)">أضف للسلة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- سلة التسوق -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 class="cart-title">سلة التسوق</h2>
+                <span class="close-cart" onclick="closeCart()">&times;</span>
+            </div>
+            <div id="cartItems">
+                <div class="empty-cart">السلة فارغة!</div>
+            </div>
+            <div class="cart-total">
+                <span class="total-label">الإجمالي:</span>
+                <span class="total-price" id="cartTotal">0 ج.م</span>
+            </div>
+            <button class="checkout-btn" onclick="openCheckout()" id="checkoutBtn" disabled>إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- نموذج الطلب -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+            <h2 class="form-title">إتمام الطلب</h2>
+            <form action="https://formsubmit.co/rubagaffer95@gmail.com" method="POST" onsubmit="closeOrderModal()">
+                <input type="hidden" name="_subject" value="طلب جديد من Hair Bar">
+                <input type="hidden" id="cartData" name="سلة_التسوق">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" name="الاسم" required placeholder="أدخل اسمك">
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" name="الهاتف" required placeholder="أدخل رقم الهاتف">
+                </div>
+                <div class="form-group">
+                    <label>العنوان</label>
+                    <input type="text" name="العنوان" required placeholder="أدخل العنوان">
+                </div>
+                <div class="form-group">
+                    <label>ملاحظات</label>
+                    <textarea name="ملاحظات" rows="3" placeholder="ملاحظات..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">إرسال الطلب</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer id="contact">
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>جميع الحقوق محفوظة لـ Hair Bar &copy; 2024</p>
+    </footer>
+
     <script>
-        function openModal(productName) { document.getElementById('productName').value = productName; document.getElementById('orderModal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
-        window.onclick = function(event) { const modal = document.getElementById('orderModal'); if (event.target == modal) { closeModal(); } }
+        // بيانات المنتجات
+        const products = ['زيت الأميرة', 'زيت شعر Hair Bar', 'بخاخ هير بار', 'بدرة التشيبي', 'كركار', 'كريم الترطيب'];
+        const quantities = [1, 1, 1, 1, 1, 1];
+        let cart = [];
+
+        // زيادة الكمية
+        function increaseQty(index) {
+            quantities[index]++;
+            document.getElementById('qty' + index).textContent = quantities[index];
+        }
+
+        // نقص الكمية
+        function decreaseQty(index) {
+            if (quantities[index] > 1) {
+                quantities[index]--;
+                document.getElementById('qty' + index).textContent = quantities[index];
+            }
+        }
+
+        // إضافة للسلة
+        function addToCart(productName, index) {
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+                existingItem.qty += quantities[index];
+            } else {
+                cart.push({
+                    name: productName,
+                    qty: quantities[index]
+                });
+            }
+            
+            updateCart();
+            openCart();
+        }
+
+        // حذف من السلة
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        // تحديث السلة
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            // تحديث العداد
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartCount.textContent = totalItems;
+            
+            // عرض المنتجات
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">السلة فارغة!</div>';
+                cartTotal.textContent = '0 ج.م';
+                checkoutBtn.disabled = true;
+            } else {
+                let html = '';
+                cart.forEach((item, index) => {
+                    html += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-qty">الكمية: ${item.qty}</div>
+                            </div>
+                            <span class="remove-item" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></span>
+                        </div>
+                    `;
+                });
+                cartItems.innerHTML = html;
+                cartTotal.textContent = cart.length + ' منتجات';
+                checkoutBtn.disabled = false;
+            }
+        }
+
+        // فتح السلة
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        // إغلاق السلة
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        // فتح صفحة الدفع
+        function openCheckout() {
+            if (cart.length === 0) return;
+            
+            // تجهيز بيانات السلة
+            let cartText = '';
+            cart.forEach(item => {
+                cartText += `- ${item.name}: ${item.qty}\n`;
+            });
+            
+            document.getElementById('cartData').value = cartText;
+            closeCart();
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        // إغلاق نموذج الطلب
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // إغلاق عند الضغط خارج النافذة
+        window.onclick = function(event) {
+            const cartModal = document.getElementById('cartModal');
+            const orderModal = document.getElementById('orderModal');
+            
+            if (event.target == cartModal) closeCart();
+            if (event.target == orderModal) closeOrderModal();
+        }
     </script>
 </body>
 </html>
